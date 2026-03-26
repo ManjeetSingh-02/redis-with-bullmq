@@ -18,7 +18,7 @@ export default function createApp(): Application {
 
   // route to add videoURL to the queue
   application.post(
-    '/add-video',
+    '/video',
     validateZodSchema(
       z.object({
         body: z.object({
