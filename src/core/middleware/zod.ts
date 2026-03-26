@@ -1,6 +1,3 @@
-// internal-imports
-import { ErrorResponse } from '../response/error.js';
-
 // type-imports
 import type { ZodObject } from 'zod';
 import type { Request, Response, NextFunction } from 'express';
@@ -17,13 +14,14 @@ export default function (schema: ZodObject) {
 
     // if validation fails
     if (!result.success)
-      return response.status(400).json(
-        new ErrorResponse<Array<string>>({
+      return response.status(400).json({
+        success: false,
+        error: {
           message: 'Invalid request data',
           code: 'VALIDATION_ERROR',
           issues: result.error.issues.map(issue => `${issue.path.join('.')}: ${issue.message}`),
-        })
-      );
+        },
+      });
 
     // replace request data with the validated data, if available
     if (result.data.body) Object.assign(request.body, result.data.body);
