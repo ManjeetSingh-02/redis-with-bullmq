@@ -8,6 +8,13 @@ import { Worker } from 'bullmq';
 // create a new worker for processing videos
 export const processVideoWorker = new Worker(
   APP_CONFIG.QUEUE_MAP.PROCESS_VIDEO_QUEUE,
-  async job => console.log(`Processing Video: ${{ id: job.id, url: job.data }}`),
-  { autorun: false, connection: redisClient }
+  async job => console.log({ jobID: job.id, videoURL: job.data.videoURL }),
+  {
+    connection: redisClient,
+    concurrency: 2,
+    limiter: {
+      max: 2,
+      duration: 10000,
+    },
+  }
 );
