@@ -5,4 +5,9 @@ export const APP_CONFIG = {
     PRODUCTION: 'production',
     TESTING: 'testing',
   },
+
+  // all queue names
+  QUEUE_MAP: {
+    PROCESS_VIDEO_QUEUE: 'process_video_queue',
+  },
 };
