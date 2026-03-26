@@ -5,6 +5,9 @@ export { env } from './config/env.js';
 // middleware
 export { default as validateZodSchema } from './middleware/zod.js';
 
+// queues
+export { processVideoQueue, processVideoWorker } from './queues/index.js';
+
 // response
 export { ErrorResponse } from './response/error.js';
 export { SuccessResponse } from './response/success.js';
