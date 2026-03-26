@@ -9,5 +9,6 @@ export const APP_CONFIG = {
   // all queue names
   QUEUE_MAP: {
     PROCESS_VIDEO_QUEUE: 'process_video_queue',
+    EMAIL_QUEUE: 'email_queue',
   },
 };
