@@ -6,4 +6,4 @@ export { env } from './config/env.js';
 export { default as validateZodSchema } from './middleware/zod.js';
 
 // queues
-export { processVideoQueue, processVideoWorker } from './queues/index.js';
+export { processVideoQueue } from './queues/index.js';
