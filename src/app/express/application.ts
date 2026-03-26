@@ -29,7 +29,7 @@ export default function createApp(): Application {
     async (request, response) => {
       // add video URL to the queue
       const job = await processVideoQueue.add(`video-${request.body.videoURL}`, {
-        url: request.body.videoURL,
+        videoURL: request.body.videoURL,
       });
 
       // send response
