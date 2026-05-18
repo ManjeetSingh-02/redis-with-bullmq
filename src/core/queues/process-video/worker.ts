@@ -37,3 +37,11 @@ export const processVideoWorker = new Worker(
     },
   }
 );
+
+// listen for completed event
+processVideoWorker.on('completed', job => console.log(`Video(${job.id}) processed successfully`));
+
+// listen for failed event
+processVideoWorker.on('failed', (job, err) =>
+  console.error(`Failed to process Video(${job?.id}): ${err.message}`)
+);

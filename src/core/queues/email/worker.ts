@@ -11,3 +11,9 @@ export const emailWorker = new Worker(
   async job => console.log(`Sending Email(${job.id}): ${job.data.message}`),
   { connection: redisClient }
 );
+
+// listen for completed event
+emailWorker.on('completed', job => console.log(`Email(${job.id}) completed!`));
+
+// listen for failed event
+emailWorker.on('failed', (job, err) => console.error(`Email(${job?.id}) failed: ${err.message}`));
