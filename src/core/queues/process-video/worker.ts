@@ -14,9 +14,19 @@ export const processVideoWorker = new Worker(
     console.log(`Processing Video(${job.id}): URL(${job.data.videoURL})`);
 
     // add a new job to email queue
-    await emailQueue.add(`email-${job.data.videoURL}`, {
-      message: `Video(${job.data.videoURL}) has been processed successfully`,
-    });
+    await emailQueue.add(
+      `email-${job.data.videoURL}`,
+      {
+        message: `Video(${job.data.videoURL}) has been processed successfully`,
+      },
+      {
+        attempts: 3,
+        backoff: {
+          type: 'exponential',
+          delay: 5000,
+        },
+      }
+    );
   },
   {
     connection: redisClient,
