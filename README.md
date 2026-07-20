@@ -1,2 +1,2 @@
-# redis-with-bullmq
-Using redis with BullMQ
+# learning-bullmq
+Learning BullMQ
